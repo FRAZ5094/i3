@@ -211,3 +211,11 @@ exec_always picom --experimental-backends --config /home/$USER/.config/i3/picom.
 
 #start fcitx on start
 exec --no-startup-id fcitx -d
+
+#enable gaps
+gaps inner 18
+gaps outer 4
+smart_gaps on
+
+#remove title bars
+for_window [class="^.*"] border pixel 2
