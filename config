@@ -273,3 +273,7 @@ client.background       $base07
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+#change brightness
+bindsym $mod+b exec /home/$USER/.config/i3/brightness_inc.sh 20
+bindsym $mod+Shift+b exec /home/$USER/.config/i3/brightness_inc.sh -20
