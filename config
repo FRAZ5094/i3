@@ -98,7 +98,7 @@ bindsym $mod+c split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-#bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
@@ -194,9 +194,12 @@ exec_always setxkbmap gb
 
 #wallpaper
 exec_always feh --bg-fill /home/$USER/Downloads/project_vayne_splash.jpg
+#exec_always feh --bg-fill /home/$USER/Downloads/project_ashe_splash.jpg
+#exec_always feh --bg-fill /home/$USER/Downloads/championship_zed_splash.jpg
 
-#Keybinding for i2 lock
-bindsym Mod0+l exec i3lock
+#Keybinding for i3 lock
+bindsym $mod+ctrl+l exec ~/.config/i3/matrixlock.sh
+
 
 #always move windwows to certain worksapces
 #use xprop to find window class (WM_CLASS(STRING))
@@ -212,7 +215,7 @@ exec --no-startup-id fcitx -d
 #enable gaps
 gaps inner 15
 gaps outer 8
-smart_gaps on
+#smart_gaps on
 
 #remove title bars
 for_window [class="^.*"] border pixel 2
@@ -223,7 +226,7 @@ bindsym $mod+Shift+z	gaps outer current minus 5
 
 #Colours Onedark
 
-set $base00 #282c34
+set $base00 #282c39
 set $base01 #353b45
 set $base02 #3e4451
 set $base03 #545862
@@ -243,26 +246,26 @@ set $base0F #be5046
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status -c /home/$USER/.config/i3/i3status.conf
-	#i3bar_command i3bar --transparency
-	#tray_output none
-	colors {
-		background $base00
-        	separator  $base01
-        	statusline $base04
-
-		focused_workspace   $base05 $base0D $base00
-        	active_workspace    $base05 $base03 $base00
-       		inactive_workspace  $base03 $base01 $base05
-        	urgent_workspace    $base08 $base08 $base00
-        	binding_mode        $base00 $base0A $base00
-	}
-}
+#bar {
+#        status_command i3status -c /home/$USER/.config/i3/i3status.conf
+#	#i3bar_command i3bar --transparency
+#	#tray_output none
+#	colors {
+#		background $base00
+#        	separator  $base01
+#        	statusline $base04
+#
+#		focused_workspace   $base05 $base0D $base00
+#        	active_workspace    $base05 $base03 $base00
+#       		inactive_workspace  $base03 $base01 $base05
+#        	urgent_workspace    $base08 $base08 $base00
+#        	binding_mode        $base00 $base0A $base00
+#	}
+#}
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0C
+client.focused          $base05 $base0D $base0B $base0D $base0C
 client.focused_inactive $base01 $base01 $base05 $base03 $base01
 client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08
@@ -275,5 +278,12 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #change brightness
+#need to make sure /sys/class/backlight/amdgpu_bl0/brightness and maxbrightness are writable by user on boot
+exec_always sudo chown fraser:fraser /sys/class/backlight/amdgpu_bl0/brightness
+exec_always sudo chown fraser:fraser /sys/class/backlight/amdgpu_bl0/max_brightness
 bindsym $mod+b exec /home/$USER/.config/i3/brightness_inc.sh 20
 bindsym $mod+Shift+b exec /home/$USER/.config/i3/brightness_inc.sh -20
+
+#Polybar launch script
+exec_always --no-startup-id $HOME/.config/i3/launch.sh
+
