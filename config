@@ -14,7 +14,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-font pango:NotoSans SC 11
+font pango:NotoSans CJK SC 11
 #font pango:Hack 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -31,12 +31,7 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
+# NetworkManager is the most popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.  exec --no-startup-id nm-applet Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -47,18 +42,26 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+q exec i3-sensible-terminal
+bindsym $mod+q exec alacritty
 
 # start firefox
 bindsym $mod+f exec firefox
 
+# start nautilus
+bindsym $mod+e exec nautilus
+
+# start anki
+bindsym $mod+a exec anki
+
+#start settings
+bindsym $mod+s exec alacritty -e vim ~/.config/i3/config
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec rofi -show run
+bindsym Mod1+space exec rofi -show run
 #rofi-theme-selector
 
 # A more modern dmenu replacement is rofi:
@@ -112,7 +115,7 @@ bindsym $mod+Shift+space floating toggle
 #bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -120,16 +123,16 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
-set $ws1 "1:一"
-set $ws2 "2:二"
-set $ws3 "3:三"
-set $ws4 "4:四"
-set $ws5 "5:五"
-set $ws6 "6:六"
-set $ws7 "7:七"
-set $ws8 "8:八"
-set $ws9 "9:九"
-set $ws10 "10:十"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -193,9 +196,8 @@ bindsym $mod+r mode "resize"
 exec_always setxkbmap gb
 
 #wallpaper
-exec_always feh --bg-fill /home/$USER/Downloads/project_vayne_splash.jpg
-#exec_always feh --bg-fill /home/$USER/Downloads/project_ashe_splash.jpg
-#exec_always feh --bg-fill /home/$USER/Downloads/championship_zed_splash.jpg
+exec_always feh --bg-fill /usr/share/backgrounds/championship_zed_splash.jpg
+#exec_always feh --bg-fill /usr/share/backgrounds/archlinux/geolanes.png
 
 #Keybinding for i3 lock
 bindsym $mod+ctrl+l exec ~/.config/i3/matrixlock.sh
@@ -214,8 +216,8 @@ exec --no-startup-id fcitx -d
 
 #enable gaps
 gaps inner 15
-gaps outer 2
-#smart_gaps on
+gaps outer 4
+smart_gaps on
 
 #remove title bars
 for_window [class="^.*"] border pixel 2
@@ -285,5 +287,7 @@ bindsym $mod+b exec /home/$USER/.config/i3/brightness_inc.sh 20
 bindsym $mod+Shift+b exec /home/$USER/.config/i3/brightness_inc.sh -20
 
 #Polybar launch script
-exec_always --no-startup-id $HOME/.config/i3/launch.sh
+#exec_always --no-startup-id $HOME/.config/i3/launch.sh
 
+#Polybar theme launch
+exec_always ~/.config/polybar/launch.sh --docky
