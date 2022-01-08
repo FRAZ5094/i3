@@ -1,0 +1,15 @@
+{
+    "firefox": "firefox",
+    "chromium-browser": "chrome",
+    "chrome": "chrome",
+    "google-chrome": "chrome",
+    "x-terminal-emulator": "terminal",
+    "thunderbird": "envelope",
+    "Org.gnome.Nautilus": "folder-open",
+    "clementine": "music",
+    "Spotify":"spotify",
+    "Alacritty": "terminal",
+    "vlc": "play",
+    "signal": "comment",
+    "Zathura": "file-pdf"
+}
