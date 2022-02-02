@@ -349,8 +349,8 @@ bar {
         urgent_workspace $base00  $base00 #0f0f0f
     }
   status_command bumblebee-status \
-		-m nvidiagpu sensors cpu2 memory disk \
-		-p sensors.json="true"  sensors.path="k10temp-pci-00c3/Tccd1/temp3_input" pacman.sum="true" nvidiagpu.format="{mem_used}MiB {fanspeed}% {temp}°C" cpu2.layout="cpu2.cpuload cpu2.coresload" nic.exclude="enp6s0, lo" nic.format="{state} {ip}" sensors2.showother="false"  time.format="%l:%M:%S %p" date.format="%a, %d/%m/%y"  \
+		-m cpu2 nvidiagpu sensors memory disk \
+		-p sensors.json="true"  sensors.path="k10temp-pci-00c3/Tccd1/temp3_input"  nvidiagpu.format="{mem_used}MiB {fanspeed}% {temp}°C" cpu2.layout="cpu2.cpuload cpu2.coresload" disk.format="{used}/{size} ({percent:0.1f}%)" \
 		-t night-powerline
 }
 #right monitor bar
@@ -372,8 +372,8 @@ bar {
         urgent_workspace $base00  $base00 #0f0f0f
     }
   status_command bumblebee-status \
-		-m playerctl network_traffic nic\
-		-p sensors.json="true"  sensors.path="k10temp-pci-00c3/Tccd1/temp3_input" pacman.sum="true" nvidiagpu.format="{mem_used}MiB {fanspeed}% {temp}°C" cpu2.layout="cpu2.cpuload cpu2.coresload" nic.exclude="enp6s0, lo" nic.format="{state} {ip}" sensors2.showother="false"  time.format="%l:%M:%S %p" date.format="%a, %d/%m/%y"  \
+		-m playerctl network_traffic nic \
+		-p playerctl.format="{title}" nic.exclude="enp6s0, lo" nic.format="{state} {ip}"\
 		-t night-powerline
 }
 
